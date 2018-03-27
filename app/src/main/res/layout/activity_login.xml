@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.LoginActivity">
+        <TextView
+            android:id="@+id/LoginWelcomeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Log In to your ChatAppProV7 account"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:padding="10dp">
+
+
+        <EditText
+            android:id="@+id/loginEmailField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="60dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginStart="60dp"
+            android:hint="email"
+            android:inputType="textEmailAddress"
+            android:padding="15dp"
+            android:textAlignment="center" />
+
+        <EditText
+            android:id="@+id/loginPasswordField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="password"
+            android:inputType="textPassword"
+            android:layout_marginEnd="60dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginStart="60dp"
+            android:padding="15dp"
+            android:textAlignment="center"/>
+
+        <Button
+            android:id="@+id/loginButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="60dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="20dp"
+            android:padding="15dp"
+            android:textAlignment="center"
+            android:text="Log In"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/createUserTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="23dp"
+        android:text="new user? click here to create an account"
+        android:textAlignment="center" />
+
+</RelativeLayout>
