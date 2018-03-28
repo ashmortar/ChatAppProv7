@@ -17,6 +17,7 @@ public class User {
     public User(String userName, String uId) {
         this.userName = userName;
         this.uId = uId;
+        this.chats.add(" ");
     }
 
     public String getUserName() {

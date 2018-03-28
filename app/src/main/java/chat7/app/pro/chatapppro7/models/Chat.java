@@ -13,9 +13,8 @@ public class Chat {
 
     public Chat() {}
 
-    public Chat(List<String> userIds, List<Message> messages) {
+    public Chat(List<String> userIds) {
         this.userIds = userIds;
-        this.messages = messages;
     }
 
     public List<String> getUserIds() {
