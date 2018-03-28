@@ -6,4 +6,30 @@
     android:layout_height="match_parent"
     tools:context="chat7.app.pro.chatapppro7.ui.MainActivity">
 
+    <Button
+        android:id="@+id/findUsersButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="148dp"
+        android:layout_marginStart="148dp"
+        android:layout_marginTop="92dp"
+        android:text="Find Some Chatters"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/viewChatsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="148dp"
+        android:layout_marginStart="148dp"
+        android:layout_marginTop="76dp"
+        android:text="What Did I Say Last Night?"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/findUsersButton"
+        app:layout_constraintVertical_bias="0.317" />
 </android.support.constraint.ConstraintLayout>

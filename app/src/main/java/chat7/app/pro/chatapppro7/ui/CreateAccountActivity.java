@@ -19,10 +19,13 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.FirebaseDatabase;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import chat7.app.pro.chatapppro7.R;
+import chat7.app.pro.chatapppro7.models.User;
+import chat7.app.pro.chatapppro7.services.FirebaseService;
 
 public class CreateAccountActivity extends AppCompatActivity implements View.OnClickListener {
     public static final String TAG = CreateAccountActivity.class.getSimpleName();
@@ -31,6 +34,7 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
     private FirebaseAuth.AuthStateListener mAuthListener;
     private ProgressDialog mAuthProgressDialog;
     private String mName;
+    private FirebaseService mFirebaseService = new FirebaseService();
 
     @BindView(R.id.createAccountButton)
     Button mCreateAccountButton;
@@ -107,6 +111,10 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "onComplete: " + user.getDisplayName());
+                            final String name = user.getDisplayName();
+                            final String uId = user.getUid();
+                            User newUser = new User(name, uId);
+                            mFirebaseService.createUser(newUser);
                         }
                     }
                 });
