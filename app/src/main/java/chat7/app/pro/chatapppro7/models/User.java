@@ -4,20 +4,21 @@ package chat7.app.pro.chatapppro7.models;
 import org.parceler.Parcel;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Parcel
 public class User {
     String userName;
     String uId;
-    List<String> chats = new ArrayList<>();
+    Map<String, Boolean> chats = new HashMap<>();
 
     public User() {}
 
     public User(String userName, String uId) {
         this.userName = userName;
         this.uId = uId;
-        this.chats.add(" ");
     }
 
     public String getUserName() {
@@ -28,7 +29,7 @@ public class User {
         return uId;
     }
 
-    public List<String> getChats() {
+    public Map<String, Boolean> getChats() {
         return chats;
     }
 
@@ -36,12 +37,11 @@ public class User {
         this.userName = userName;
     }
 
-
     public void setuId(String uId) {
         this.uId = uId;
     }
 
-    public void setChats(List<String> chats) {
+    public void setChats(Map<String, Boolean> chats) {
         this.chats = chats;
     }
 }

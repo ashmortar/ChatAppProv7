@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="chat7.app.pro.chatapppro7.ui.ChatListActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/chatTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Click on an user below to start a chat!"
+        android:text="Click on a chat below to continue!"
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
@@ -19,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/chatRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="483dp"
         app:layout_constraintBottom_toBottomOf="parent"

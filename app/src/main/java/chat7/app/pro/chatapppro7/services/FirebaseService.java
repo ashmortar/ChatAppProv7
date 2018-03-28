@@ -1,16 +1,13 @@
 package chat7.app.pro.chatapppro7.services;
 
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import chat7.app.pro.chatapppro7.models.Chat;
+import chat7.app.pro.chatapppro7.models.Message;
 import chat7.app.pro.chatapppro7.models.User;
 
 public class FirebaseService {
@@ -35,9 +32,15 @@ public class FirebaseService {
         for (int i = 0; i < chat.getUserIds().size(); i++) {
             DatabaseReference userRef = FirebaseDatabase.getInstance()
                     .getReference("users")
-                    .child(chat.getUserIds().get(i))
+                    .child(chat.getUserIds().keySet().toArray()[i].toString())
                     .child("chats").push();
-            userRef.setValue(chat.getPushId());
+            userRef.setValue(true);
         }
+    }
+
+    public static void sendMessage(Message message, String chatId) {
+        DatabaseReference mChatRef = FirebaseDatabase.getInstance().getReference("chats").child(chatId).child("messages").push();
+        message.setPushId(mChatRef.getKey());
+        mChatRef.setValue(message);
     }
 }

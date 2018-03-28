@@ -2,39 +2,41 @@ package chat7.app.pro.chatapppro7.models;
 
 import org.parceler.Parcel;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @Parcel
 public class Chat {
-    List<String> userIds;
-    List<Message> messages;
+    Map<String, Boolean> userIds = new HashMap<>();
+    Map<String, Message> messages = new HashMap<>();
     String pushId;
 
     public Chat() {}
 
-    public Chat(List<String> userIds) {
+    public Chat(Map<String, Boolean> userIds) {
         this.userIds = userIds;
     }
 
-    public List<String> getUserIds() {
+    public Map<String, Boolean> getUserIds() {
         return userIds;
     }
 
-    public List<Message> getMessages() {
+    public void setUserIds(Map<String, Boolean> userIds) {
+        this.userIds = userIds;
+    }
+
+    public Map<String, Message> getMessages() {
         return messages;
+    }
+
+    public void setMessages(Map<String, Message> messages) {
+        this.messages = messages;
     }
 
     public String getPushId() {
         return pushId;
-    }
-
-    public void setUserIds(List<String> userIds) {
-        this.userIds = userIds;
-    }
-
-    public void setMessages(List<Message> messages) {
-        this.messages = messages;
     }
 
     public void setPushId(String pushId) {

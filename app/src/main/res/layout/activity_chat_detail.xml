@@ -6,4 +6,36 @@
     android:layout_height="match_parent"
     tools:context="chat7.app.pro.chatapppro7.ui.ChatDetailActivity">
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/messageRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="411dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearStuff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearStuff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/messageRecyclerView">
+
+        <EditText
+            android:id="@+id/messageEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="message here"
+            android:textAlignment="center"/>
+
+        <Button
+            android:id="@+id/messageSendButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="send" />
+
+    </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>
