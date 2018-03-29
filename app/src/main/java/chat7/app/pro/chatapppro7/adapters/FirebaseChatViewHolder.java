@@ -20,6 +20,7 @@ import java.util.List;
 
 import chat7.app.pro.chatapppro7.R;
 import chat7.app.pro.chatapppro7.models.Chat;
+import chat7.app.pro.chatapppro7.services.FirebaseService;
 import chat7.app.pro.chatapppro7.ui.ChatDetailActivity;
 
 /**
@@ -58,6 +59,7 @@ public class FirebaseChatViewHolder extends RecyclerView.ViewHolder implements V
                 int itemPosition = getLayoutPosition();
                 Intent intent = new Intent(mContext, ChatDetailActivity.class);
                 intent.putExtra("chatId", chatIds.get(itemPosition));
+                intent.putStringArrayListExtra("chatMembers", FirebaseService.getChatMembers(chatIds.get(itemPosition)));
                 mContext.startActivity(intent);
             }
 

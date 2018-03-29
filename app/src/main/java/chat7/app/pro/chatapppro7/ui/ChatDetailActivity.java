@@ -20,6 +20,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import chat7.app.pro.chatapppro7.R;
@@ -32,6 +35,7 @@ public class ChatDetailActivity extends AppCompatActivity implements View.OnClic
     private Query query;
     private FirebaseRecyclerAdapter mFirebaseAdapter;
     private String chatId;
+    private List<String> chatMembers = new ArrayList<>();
     @BindView(R.id.messageRecyclerView) RecyclerView mRecyclerView;
     @BindView(R.id.messageEditText) EditText mMessageEditText;
     @BindView(R.id.messageSendButton) Button mMessageSendButton;
@@ -42,7 +46,9 @@ public class ChatDetailActivity extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.activity_chat_detail);
         ButterKnife.bind(this);
         chatId = getIntent().getStringExtra("chatId");
-        Log.d(TAG, "onCreate: " + chatId);
+        chatMembers = getIntent().getStringArrayListExtra("chatMembers");
+
+        Log.d(TAG, "onCreate: " + chatMembers.toString());
         query = FirebaseDatabase.getInstance().getReference("chats").child(chatId).child("messages");
 
         mMessageSendButton.setOnClickListener(this);
@@ -86,7 +92,14 @@ public class ChatDetailActivity extends AppCompatActivity implements View.OnClic
                 String senderName = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
                 String text = messageContent;
                 Message newMessage = new Message(senderId, senderName, text);
-                FirebaseService.sendMessage(newMessage, chatId);
+                List<String> recipientIds = new ArrayList<>();
+                for (int i =0; i < chatMembers.size(); i++) {
+                    if (chatMembers.get(i).equals(senderId)) {
+                    } else {
+                        recipientIds.add(chatMembers.get(i));
+                    }
+                }
+                FirebaseService.sendMessage(newMessage, chatId, recipientIds);
                 mMessageEditText.setText("");
             } else {
                 Toast.makeText(this, "please enter a message", Toast.LENGTH_SHORT).show();

@@ -20,6 +20,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.FirebaseInstanceIdService;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -114,6 +116,7 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
                             final String name = user.getDisplayName();
                             final String uId = user.getUid();
                             User newUser = new User(name, uId);
+                            newUser.setNotificationToken(FirebaseInstanceId.getInstance().getToken());
                             mFirebaseService.createUser(newUser);
                         }
                     }

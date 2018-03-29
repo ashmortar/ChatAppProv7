@@ -13,6 +13,7 @@ public class User {
     String userName;
     String uId;
     Map<String, String> chats = new HashMap<>();
+    String notificationToken;
 
     public User() {}
 
@@ -44,4 +45,8 @@ public class User {
     public void setChats(Map<String, String> chats) {
         this.chats = chats;
     }
+
+    public String getNotificationToken() { return notificationToken;}
+
+    public void setNotificationToken(String notificationToken) { this.notificationToken = notificationToken; }
 }

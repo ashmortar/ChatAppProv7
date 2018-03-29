@@ -67,7 +67,9 @@ public class FirebaseUserViewHolder extends RecyclerView.ViewHolder implements V
                 Chat newChat = new Chat(chatMembers);
                 FirebaseService.createChat(newChat, chatName);
                 Intent intent = new Intent(mContext, ChatDetailActivity.class);
+                ArrayList<String> stringListChatMembers = new ArrayList<>(chatMembers.keySet());
                 intent.putExtra("chatId", newChat.getPushId());
+                intent.putStringArrayListExtra("chatMembers", stringListChatMembers);
                 mContext.startActivity(intent);
             }
 
