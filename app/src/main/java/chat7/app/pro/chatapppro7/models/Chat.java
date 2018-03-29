@@ -10,6 +10,7 @@ import java.util.Map;
 @Parcel
 public class Chat {
     Map<String, Boolean> userIds = new HashMap<>();
+    Map<String, Boolean> userNames = new HashMap<>();
     Map<String, Message> messages = new HashMap<>();
     String pushId;
 

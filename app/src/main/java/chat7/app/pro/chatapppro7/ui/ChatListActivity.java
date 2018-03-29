@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
@@ -26,8 +28,9 @@ import chat7.app.pro.chatapppro7.models.Chat;
 import chat7.app.pro.chatapppro7.models.User;
 
 public class ChatListActivity extends AppCompatActivity {
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private static final String TAG = ChatListActivity.class.getSimpleName();
-    private Query query = FirebaseDatabase.getInstance().getReference("chats");
+    private Query query = FirebaseDatabase.getInstance().getReference("users").child(user.getUid()).child("chats");
     private FirebaseRecyclerAdapter mFirebaseAdapter;
 
     @BindView(R.id.chatTextView)
@@ -44,13 +47,13 @@ public class ChatListActivity extends AppCompatActivity {
     }
 
     private void setupFirebaseAdapter() {
-        FirebaseRecyclerOptions<Chat> options = new FirebaseRecyclerOptions.Builder<Chat>()
-                .setQuery(query, Chat.class)
+        FirebaseRecyclerOptions<String> options = new FirebaseRecyclerOptions.Builder<String>()
+                .setQuery(query, String.class)
                 .build();
 
-        mFirebaseAdapter = new FirebaseRecyclerAdapter<Chat, FirebaseChatViewHolder>(options) {
+        mFirebaseAdapter = new FirebaseRecyclerAdapter<String, FirebaseChatViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(FirebaseChatViewHolder holder, int position, Chat model) {
+            protected void onBindViewHolder(FirebaseChatViewHolder holder, int position, String model) {
                 holder.bindChat(model);
             }
 

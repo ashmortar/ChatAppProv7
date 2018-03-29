@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,6 +27,7 @@ import chat7.app.pro.chatapppro7.ui.ChatDetailActivity;
  */
 
 public class FirebaseChatViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    String TAG = "wtf";
     View mView;
     Context mContext;
     FirebaseUser user;
@@ -37,23 +39,25 @@ public class FirebaseChatViewHolder extends RecyclerView.ViewHolder implements V
         itemView.setOnClickListener(this);
     }
 
-    public void bindChat(Chat chat) {
+    public void bindChat(String chat) {
         TextView chatNameTextView = (TextView) mView.findViewById(R.id.chatNameTextView);
-        chatNameTextView.setText(chat.getPushId());
+        chatNameTextView.setText(chat);
     }
 
     public void onClick(View view) {
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("chats");
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users").child(user.getUid()).child("chats");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                List<Chat> chats = new ArrayList<Chat>();
+                List<String> chatIds = new ArrayList<String>();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    chats.add(snapshot.getValue(Chat.class));
+                    chatIds.add(snapshot.getKey());
+                    Log.d(TAG, "onDataChange: " + snapshot.getKey());
                 }
                 int itemPosition = getLayoutPosition();
                 Intent intent = new Intent(mContext, ChatDetailActivity.class);
-                intent.putExtra("chatId", chats.get(itemPosition).getPushId());
+                intent.putExtra("chatId", chatIds.get(itemPosition));
                 mContext.startActivity(intent);
             }
 

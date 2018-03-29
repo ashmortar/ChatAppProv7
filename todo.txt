@@ -1,5 +1,4 @@
-i can see all the chats
-clear edittext after hitting send
+
 trim whitespace
 see if enter will send instead of adding line
 any styles

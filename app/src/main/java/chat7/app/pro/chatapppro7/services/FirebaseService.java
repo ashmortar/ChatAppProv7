@@ -22,7 +22,7 @@ public class FirebaseService {
         mUserReference.setValue(user);
     }
 
-    public static void createChat(Chat chat) {
+    public static void createChat(Chat chat, String chatName) {
         DatabaseReference mChatRef = FirebaseDatabase.getInstance().getReference("chats");
         DatabaseReference pushRef = mChatRef.push();
         String pushId = pushRef.getKey();
@@ -33,8 +33,9 @@ public class FirebaseService {
             DatabaseReference userRef = FirebaseDatabase.getInstance()
                     .getReference("users")
                     .child(chat.getUserIds().keySet().toArray()[i].toString())
-                    .child("chats").push();
-            userRef.setValue(true);
+                    .child("chats")
+                    .child(chat.getPushId());
+            userRef.setValue(chatName);
         }
     }
 

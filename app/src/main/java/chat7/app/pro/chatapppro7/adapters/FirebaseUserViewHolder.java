@@ -27,10 +27,6 @@ import chat7.app.pro.chatapppro7.models.User;
 import chat7.app.pro.chatapppro7.services.FirebaseService;
 import chat7.app.pro.chatapppro7.ui.ChatDetailActivity;
 
-/**
- * Created by Guest on 3/28/18.
- */
-
 public class FirebaseUserViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     View mView;
     Context mContext;
@@ -63,12 +59,13 @@ public class FirebaseUserViewHolder extends RecyclerView.ViewHolder implements V
                     users.add(snapshot.getValue(User.class));
                 }
                 int itemPosition = getLayoutPosition();
-                String recipient = users.get(itemPosition).getuId();
+                String recipientId = users.get(itemPosition).getuId();
                 Map<String, Boolean> chatMembers = new HashMap<>();
+                String chatName = "Chat between " + user.getDisplayName() + " and " + users.get(itemPosition).getUserName();
                 chatMembers.put(user.getUid(), true);
-                chatMembers.put(recipient, true);
+                chatMembers.put(recipientId, true);
                 Chat newChat = new Chat(chatMembers);
-                FirebaseService.createChat(newChat);
+                FirebaseService.createChat(newChat, chatName);
                 Intent intent = new Intent(mContext, ChatDetailActivity.class);
                 intent.putExtra("chatId", newChat.getPushId());
                 mContext.startActivity(intent);

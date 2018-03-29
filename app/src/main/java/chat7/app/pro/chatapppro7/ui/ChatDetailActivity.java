@@ -42,6 +42,7 @@ public class ChatDetailActivity extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.activity_chat_detail);
         ButterKnife.bind(this);
         chatId = getIntent().getStringExtra("chatId");
+        Log.d(TAG, "onCreate: " + chatId);
         query = FirebaseDatabase.getInstance().getReference("chats").child(chatId).child("messages");
 
         mMessageSendButton.setOnClickListener(this);
@@ -86,6 +87,7 @@ public class ChatDetailActivity extends AppCompatActivity implements View.OnClic
                 String text = messageContent;
                 Message newMessage = new Message(senderId, senderName, text);
                 FirebaseService.sendMessage(newMessage, chatId);
+                mMessageEditText.setText("");
             } else {
                 Toast.makeText(this, "please enter a message", Toast.LENGTH_SHORT).show();
             }

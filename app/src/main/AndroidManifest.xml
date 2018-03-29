@@ -37,7 +37,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.MainActivity" />
         </activity>
-        <activity android:name=".ui.ChatDetailActivity"></activity>
+        <activity android:name=".ui.ChatDetailActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.ChatListActivity" />
+        </activity>
     </application>
 
 </manifest>

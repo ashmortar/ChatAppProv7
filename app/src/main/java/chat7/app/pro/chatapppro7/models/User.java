@@ -12,7 +12,7 @@ import java.util.Map;
 public class User {
     String userName;
     String uId;
-    Map<String, Boolean> chats = new HashMap<>();
+    Map<String, String> chats = new HashMap<>();
 
     public User() {}
 
@@ -29,7 +29,7 @@ public class User {
         return uId;
     }
 
-    public Map<String, Boolean> getChats() {
+    public Map<String, String> getChats() {
         return chats;
     }
 
@@ -41,7 +41,7 @@ public class User {
         this.uId = uId;
     }
 
-    public void setChats(Map<String, Boolean> chats) {
+    public void setChats(Map<String, String> chats) {
         this.chats = chats;
     }
 }
