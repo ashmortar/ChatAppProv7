@@ -14,7 +14,6 @@ import chat7.app.pro.chatapppro7.models.Message;
  */
 
 public class FirebaseMessageViewHolder extends RecyclerView.ViewHolder {
-    String TAG = "just work already";
     View mView;
     Context mContext;
 
@@ -25,7 +24,6 @@ public class FirebaseMessageViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bindMessage(Message message) {
-        Log.d(TAG, "bindMessage: has started");
         TextView senderNameView = (TextView) mView.findViewById(R.id.messageSenderView);
         TextView messageContentView = (TextView) mView.findViewById(R.id.messageContentView);
 

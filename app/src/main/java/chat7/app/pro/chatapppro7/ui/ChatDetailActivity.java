@@ -87,7 +87,7 @@ public class ChatDetailActivity extends AppCompatActivity implements View.OnClic
     public void onClick(View view) {
         if (view == mMessageSendButton) {
             String messageContent = mMessageEditText.getText().toString();
-            if (messageContent != "") {
+            if (!messageContent.equals("")) {
                 String senderId = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 String senderName = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
                 String text = messageContent;

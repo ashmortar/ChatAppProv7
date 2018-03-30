@@ -76,8 +76,13 @@ public class FirebaseService extends FirebaseMessagingService {
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    chatMembers.add(snapshot.getKey());
+                String result = dataSnapshot.getValue().toString();
+                String[] array = result.split(" ");
+                for (String id : array) {
+                    String chatMember = id.substring(1, 28);
+                    Log.d("wtf", "onDataChange: " +chatMember);
+                    chatMembers.add(chatMember);
+
                 }
             }
 
@@ -86,7 +91,7 @@ public class FirebaseService extends FirebaseMessagingService {
                 Log.d("getChatMembers error", "onCancelled: " + databaseError.getDetails());
             }
         });
-
+        Log.d("wtf", "getChatMembers: " + chatMembers.toString());
         return chatMembers;
     }
 
